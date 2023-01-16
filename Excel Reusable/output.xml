@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20230110 15:43:24.471" rpa="true" schemaversion="3">
+<suite id="s1" name="Tasks" source="d:\Robo corp\Excel Reusable\tasks.robot">
+<test id="s1-t1" name="Simple Task" line="22">
+<kw name="Read Json File">
+<kw name="Load JSON from file" library="RPA.JSON">
+<var>${config}</var>
+<arg>Config.Json</arg>
+<doc>Load JSON data from a file, and return it as JSON serializable object.
+Depending on the input file the object can be either a dictionary,
+a list, or a scalar value.</doc>
+<msg timestamp="20230110 15:43:26.175" level="INFO">Loading JSON from file: Config.Json</msg>
+<msg timestamp="20230110 15:43:26.192" level="INFO">${config} = {'templateFilePath': 'D:/Robo corp/Excel Reusable/Template.xlsx', 'inputFilepath': 'D:/Robo corp/Excel Reusable/InputFiles/Input.xlsx'}</msg>
+<status status="PASS" starttime="20230110 15:43:26.175" endtime="20230110 15:43:26.193"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${config}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230110 15:43:26.193" level="INFO">{'templateFilePath': 'D:/Robo corp/Excel Reusable/Template.xlsx', 'inputFilepath': 'D:/Robo corp/Excel Reusable/InputFiles/Input.xlsx'}</msg>
+<status status="PASS" starttime="20230110 15:43:26.193" endtime="20230110 15:43:26.193"/>
+</kw>
+<kw name="Get value from JSON" library="RPA.JSON">
+<var>${templateFilePath}</var>
+<arg>${config}</arg>
+<arg>[templateFilePath]</arg>
+<doc>Get a single value from a JSON serializable object that matches the given expression.</doc>
+<msg timestamp="20230110 15:43:26.201" level="INFO">Get value from JSON with expression: '[templateFilePath]'</msg>
+<msg timestamp="20230110 15:43:26.293" level="INFO">${templateFilePath} = D:/Robo corp/Excel Reusable/Template.xlsx</msg>
+<status status="PASS" starttime="20230110 15:43:26.193" endtime="20230110 15:43:26.293"/>
+</kw>
+<kw name="Get value from JSON" library="RPA.JSON">
+<var>${inputFilepath}</var>
+<arg>${config}</arg>
+<arg>[inputFilepath]</arg>
+<doc>Get a single value from a JSON serializable object that matches the given expression.</doc>
+<msg timestamp="20230110 15:43:26.293" level="INFO">Get value from JSON with expression: '[inputFilepath]'</msg>
+<msg timestamp="20230110 15:43:26.359" level="INFO">${inputFilepath} = D:/Robo corp/Excel Reusable/InputFiles/Input.xlsx</msg>
+<status status="PASS" starttime="20230110 15:43:26.293" endtime="20230110 15:43:26.359"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${templateFilePath}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20230110 15:43:26.367" level="INFO">${templateFilePath} = D:/Robo corp/Excel Reusable/Template.xlsx</msg>
+<status status="PASS" starttime="20230110 15:43:26.359" endtime="20230110 15:43:26.367"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${inputFilepath}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20230110 15:43:26.367" level="INFO">${inputFilepath} = D:/Robo corp/Excel Reusable/InputFiles/Input.xlsx</msg>
+<status status="PASS" starttime="20230110 15:43:26.367" endtime="20230110 15:43:26.367"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${inputFilepath}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230110 15:43:26.367" level="INFO">D:/Robo corp/Excel Reusable/InputFiles/Input.xlsx</msg>
+<status status="PASS" starttime="20230110 15:43:26.367" endtime="20230110 15:43:26.367"/>
+</kw>
+<status status="PASS" starttime="20230110 15:43:26.175" endtime="20230110 15:43:26.367"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Get Details from Template Excel">
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>${templateFilePath}</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20230110 15:43:26.434" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000017F0AE55940&gt;</msg>
+<status status="PASS" starttime="20230110 15:43:26.367" endtime="20230110 15:43:26.434"/>
+</kw>
+<kw name="List Worksheets" library="RPA.Excel.Files">
+<var>@{tempSheetname}</var>
+<doc>List all names of worksheets in the given workbook.</doc>
+<msg timestamp="20230110 15:43:26.434" level="INFO">@{tempSheetname} = [ Sheet1 ]</msg>
+<status status="PASS" starttime="20230110 15:43:26.434" endtime="20230110 15:43:26.442"/>
+</kw>
+<kw name="Read Worksheet As Table" library="RPA.Excel.Files">
+<var>${table}</var>
+<doc>Read the contents of a worksheet into a Table container. Allows
+sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
+<msg timestamp="20230110 15:43:26.443" level="INFO">Created table: Table(columns=['A', 'B', 'C', 'D', 'E'], rows=2)</msg>
+<msg timestamp="20230110 15:43:26.449" level="INFO">${table} = Table(columns=['A', 'B', 'C', 'D', 'E'], rows=2)</msg>
+<status status="PASS" starttime="20230110 15:43:26.443" endtime="20230110 15:43:26.450"/>
+</kw>
+<kw name="Get Table Row" library="RPA.Tables">
+<var>${ExcelHeaders}</var>
+<arg>${table}</arg>
+<arg>0</arg>
+<doc>Get a single row from a table.</doc>
+<msg timestamp="20230110 15:43:26.450" level="INFO">${ExcelHeaders} = {'A': 'S.No', 'B': 'Project Name', 'C': 'Process Name', 'D': 'Timeline', 'E': 'End Date'}</msg>
+<status status="PASS" starttime="20230110 15:43:26.450" endtime="20230110 15:43:26.450"/>
+</kw>
+<kw name="Close Workbook" library="RPA.Excel.Files">
+<doc>Close the active workbook.</doc>
+<msg timestamp="20230110 15:43:26.450" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000017F0AE55940&gt;</msg>
+<status status="PASS" starttime="20230110 15:43:26.450" endtime="20230110 15:43:26.450"/>
+</kw>
+<status status="PASS" starttime="20230110 15:43:26.367" endtime="20230110 15:43:26.450"/>
+</kw>
+<kw name="Get Details from Input File">
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>${inputFilepath}</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20230110 15:43:26.509" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000017F0AEA49A0&gt;</msg>
+<status status="PASS" starttime="20230110 15:43:26.450" endtime="20230110 15:43:26.509"/>
+</kw>
+<kw name="List Worksheets" library="RPA.Excel.Files">
+<var>@{ipSheetName}</var>
+<doc>List all names of worksheets in the given workbook.</doc>
+<msg timestamp="20230110 15:43:26.509" level="INFO">@{ipSheetName} = [ Sheet1 ]</msg>
+<status status="PASS" starttime="20230110 15:43:26.509" endtime="20230110 15:43:26.509"/>
+</kw>
+<kw name="Read Worksheet As Table" library="RPA.Excel.Files">
+<var>${Intable}</var>
+<doc>Read the contents of a worksheet into a Table container. Allows
+sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
+<msg timestamp="20230110 15:43:26.517" level="INFO">Created table: Table(columns=['A', 'B', 'C', 'D', 'E'], rows=5)</msg>
+<msg timestamp="20230110 15:43:26.517" level="INFO">${Intable} = Table(columns=['A', 'B', 'C', 'D', 'E'], rows=5)</msg>
+<status status="PASS" starttime="20230110 15:43:26.509" endtime="20230110 15:43:26.517"/>
+</kw>
+<kw name="Get Table Row" library="RPA.Tables">
+<var>${inExcelHeaders}</var>
+<arg>${Intable}</arg>
+<arg>0</arg>
+<doc>Get a single row from a table.</doc>
+<msg timestamp="20230110 15:43:26.517" level="INFO">${inExcelHeaders} = {'A': 'S.No', 'B': 'Project Name', 'C': 'Process Name', 'D': 'Timeline', 'E': 'End Date'}</msg>
+<status status="PASS" starttime="20230110 15:43:26.517" endtime="20230110 15:43:26.517"/>
+</kw>
+<kw name="Close Workbook" library="RPA.Excel.Files">
+<doc>Close the active workbook.</doc>
+<msg timestamp="20230110 15:43:26.517" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000017F0AEA49A0&gt;</msg>
+<status status="PASS" starttime="20230110 15:43:26.517" endtime="20230110 15:43:26.517"/>
+</kw>
+<status status="PASS" starttime="20230110 15:43:26.450" endtime="20230110 15:43:26.517"/>
+</kw>
+<kw name="Check Coulmn and Sheet names are matching?">
+<if>
+<branch type="IF" condition="'${ExcelHeaders}' == '${inExcelHeaders}'">
+<kw name="Log" library="BuiltIn">
+<arg>Column names are equal</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230110 15:43:26.526" level="INFO">Column names are equal</msg>
+<status status="PASS" starttime="20230110 15:43:26.517" endtime="20230110 15:43:26.526"/>
+</kw>
+<status status="PASS" starttime="20230110 15:43:26.517" endtime="20230110 15:43:26.526"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Column names are not equal</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230110 15:43:26.526" endtime="20230110 15:43:26.526"/>
+</kw>
+<status status="NOT RUN" starttime="20230110 15:43:26.526" endtime="20230110 15:43:26.526"/>
+</branch>
+<status status="PASS" starttime="20230110 15:43:26.517" endtime="20230110 15:43:26.526"/>
+</if>
+<if>
+<branch type="IF" condition="@{tempSheetname} == @{ipSheetName}">
+<kw name="Log" library="BuiltIn">
+<arg>Sheet names are equal</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230110 15:43:26.526" level="INFO">Sheet names are equal</msg>
+<status status="PASS" starttime="20230110 15:43:26.526" endtime="20230110 15:43:26.526"/>
+</kw>
+<status status="PASS" starttime="20230110 15:43:26.526" endtime="20230110 15:43:26.526"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Sheet names are not macthing</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230110 15:43:26.534" endtime="20230110 15:43:26.534"/>
+</kw>
+<status status="NOT RUN" starttime="20230110 15:43:26.534" endtime="20230110 15:43:26.534"/>
+</branch>
+<status status="PASS" starttime="20230110 15:43:26.526" endtime="20230110 15:43:26.534"/>
+</if>
+<status status="PASS" starttime="20230110 15:43:26.517" endtime="20230110 15:43:26.534"/>
+</kw>
+<status status="PASS" starttime="20230110 15:43:26.367" endtime="20230110 15:43:26.534"/>
+</branch>
+<branch type="EXCEPT" variable="${ErrorMessage}">
+<kw name="Log" library="BuiltIn">
+<arg>${ErrorMessage}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230110 15:43:26.534" endtime="20230110 15:43:26.534"/>
+</kw>
+<status status="NOT RUN" starttime="20230110 15:43:26.534" endtime="20230110 15:43:26.534"/>
+</branch>
+<status status="PASS" starttime="20230110 15:43:26.367" endtime="20230110 15:43:26.534"/>
+</try>
+<status status="PASS" starttime="20230110 15:43:26.168" endtime="20230110 15:43:26.534"/>
+</test>
+<doc>This Process compares Input excel file with Template file
+Reads Template file Sheet and Column names
+Reads Input File Sheet and Coulmn names
+Compares Sheet and Column names are mataching or not from both files</doc>
+<status status="PASS" starttime="20230110 15:43:24.495" endtime="20230110 15:43:26.545"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

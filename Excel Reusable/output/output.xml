@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20221228 17:31:40.077" rpa="true" schemaversion="3">
+<suite id="s1" name="Tasks" source="D:\Robo corp\Excel Reusable\tasks.robot">
+<test id="s1-t1" name="Excel Reusable" line="20">
+<kw name="Checking Column names in Template excel">
+<kw name="Open Workbook" library="RPA.Excel.Application">
+<arg>${FilePath}</arg>
+<doc>Open Excel by filename</doc>
+<msg timestamp="20221228 17:31:46.258" level="INFO">Opening workbook: D:\Robo corp\Excel Reusable\Template.xlsx</msg>
+<msg timestamp="20221228 17:31:46.323" level="INFO">Trying to open workbook by another method</msg>
+<status status="PASS" starttime="20221228 17:31:43.903" endtime="20221228 17:31:47.001"/>
+</kw>
+<kw name="Get Active Worksheet" library="RPA.Excel.Files">
+<var>${SheetName}</var>
+<doc>Get the name of the worksheet which is currently active.</doc>
+<msg timestamp="20221228 17:31:47.001" level="FAIL">No active workbook</msg>
+<status status="FAIL" starttime="20221228 17:31:47.001" endtime="20221228 17:31:47.001"/>
+</kw>
+<kw name="Read Worksheet As Table" library="RPA.Excel.Files">
+<var>${table}</var>
+<doc>Read the contents of a worksheet into a Table container. Allows
+sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
+<status status="NOT RUN" starttime="20221228 17:31:47.009" endtime="20221228 17:31:47.009"/>
+</kw>
+<kw name="Get Table Row" library="RPA.Tables">
+<var>${ExcelHeaders}</var>
+<arg>${table}</arg>
+<arg>0</arg>
+<doc>Get a single row from a table.</doc>
+<status status="NOT RUN" starttime="20221228 17:31:47.009" endtime="20221228 17:31:47.009"/>
+</kw>
+<kw name="Close Workbook" library="RPA.Excel.Files">
+<doc>Close the active workbook.</doc>
+<status status="NOT RUN" starttime="20221228 17:31:47.009" endtime="20221228 17:31:47.009"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${SheetName}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20221228 17:31:47.009" endtime="20221228 17:31:47.009"/>
+</kw>
+<kw name="Log Many" library="BuiltIn">
+<arg>${table}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<status status="NOT RUN" starttime="20221228 17:31:47.009" endtime="20221228 17:31:47.009"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${ExcelHeaders}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20221228 17:31:47.009" endtime="20221228 17:31:47.009"/>
+</kw>
+<status status="FAIL" starttime="20221228 17:31:43.895" endtime="20221228 17:31:47.009"/>
+</kw>
+<kw name="Get Input Data">
+<status status="NOT RUN" starttime="20221228 17:31:47.009" endtime="20221228 17:31:47.009"/>
+</kw>
+<status status="FAIL" starttime="20221228 17:31:43.895" endtime="20221228 17:31:47.009">No active workbook</status>
+</test>
+<doc>Template robot main suite.</doc>
+<status status="FAIL" starttime="20221228 17:31:40.086" endtime="20221228 17:31:47.017"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
